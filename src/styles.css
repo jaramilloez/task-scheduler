@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: rgb(230, 240, 250);
+}
+.green-btn {
+  background-color: rgb(220, 250, 230) !important;
+  color: rgb(70, 130, 100) !important;
+  transition: all 0.15s ease-in-out;
+}
+.green-btn:hover {
+  opacity: 0.8;
+}

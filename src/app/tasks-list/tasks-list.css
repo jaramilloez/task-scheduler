@@ -1,0 +1,5 @@
+@media screen and (width >= 1400px) {
+  #tasks-list-container {
+    width: 65%;
+  }
+}
