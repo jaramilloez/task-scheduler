@@ -12,6 +12,13 @@ import { SubscriptionLoggable } from 'rxjs/internal/testing/SubscriptionLoggable
 export class TasksService {
   private http = inject(HttpClient);
   //private apiUrl = environment.apiUrl + '/tasks';
+
+  /* Be aware that this is only here to substitute an API/database because I'm 
+  trying to soley focus on learning Angular with this project. I've commented 
+  out a lot of what would be needed to use Angular's HttpClient with a 
+  real API, so I can still practice that part without errors preventing start. */
+
+  readonly todaysDate: Date = new Date();
   private tasks: Task[] = [
     new Task(
       'abc1d',
@@ -19,7 +26,11 @@ export class TasksService {
       1,
       'Weeks',
       true,
-      new Date(new Date().setDate(new Date().getDate() - 1))
+      new Date(
+        this.todaysDate.getFullYear(),
+        this.todaysDate.getMonth() - 1,
+        this.todaysDate.getDate()
+      )
     ),
     new Task(
       'abc2d',
@@ -27,7 +38,11 @@ export class TasksService {
       3,
       'Months',
       false,
-      new Date(new Date().setMonth(new Date().getMonth() + 1))
+      new Date(
+        this.todaysDate.getFullYear(),
+        this.todaysDate.getMonth() + 1,
+        this.todaysDate.getDate()
+      )
     ),
     new Task(
       'abc3d',
@@ -35,7 +50,11 @@ export class TasksService {
       10,
       'Years',
       false,
-      new Date(new Date().setFullYear(new Date().getFullYear() + 6))
+      new Date(
+        this.todaysDate.getFullYear() + 6,
+        this.todaysDate.getMonth(),
+        this.todaysDate.getDate()
+      )
     ),
     new Task(
       'abc4d',
@@ -43,7 +62,11 @@ export class TasksService {
       2,
       'Weeks',
       true,
-      new Date(new Date().setDate(new Date().getDate() - 21))
+      new Date(
+        this.todaysDate.getFullYear(),
+        this.todaysDate.getMonth(),
+        this.todaysDate.getDate() - 21
+      )
     ),
     new Task(
       'abc5d',
@@ -51,7 +74,11 @@ export class TasksService {
       5,
       'Days',
       true,
-      new Date(new Date().setDate(new Date().getDate() - 2))
+      new Date(
+        this.todaysDate.getFullYear(),
+        this.todaysDate.getMonth(),
+        this.todaysDate.getDate() - 2
+      )
     ),
     new Task(
       'abc6d',
@@ -59,7 +86,11 @@ export class TasksService {
       3,
       'Months',
       false,
-      new Date(new Date().setDate(new Date().getDate() + 21))
+      new Date(
+        this.todaysDate.getFullYear(),
+        this.todaysDate.getMonth(),
+        this.todaysDate.getDate() + 21
+      )
     ),
     new Task(
       'abc7d',
@@ -67,7 +98,11 @@ export class TasksService {
       45,
       'Days',
       false,
-      new Date(new Date().setDate(new Date().getDate() + 7))
+      new Date(
+        this.todaysDate.getFullYear(),
+        this.todaysDate.getMonth(),
+        this.todaysDate.getDate() + 7
+      )
     ),
     new Task(
       'abc8d',
@@ -75,7 +110,11 @@ export class TasksService {
       1,
       'Months',
       true,
-      new Date(new Date().setDate(new Date().getDate() - 3))
+      new Date(
+        this.todaysDate.getFullYear(),
+        this.todaysDate.getMonth(),
+        this.todaysDate.getDate() - 3
+      )
     ),
     new Task(
       'abc9d',
@@ -83,7 +122,11 @@ export class TasksService {
       6,
       'Months',
       true,
-      new Date(new Date().setMonth(new Date().getMonth() - 1))
+      new Date(
+        this.todaysDate.getFullYear(),
+        this.todaysDate.getMonth() - 1,
+        this.todaysDate.getDate()
+      )
     ),
   ];
 

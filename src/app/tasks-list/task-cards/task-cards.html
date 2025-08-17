@@ -1,3 +1,27 @@
-@for (task of tasks; track $index) {
-<p>{{ task.name }}</p>
+@for (task of tasks; track task.id) {
+<div class="task-card container border rounded-2 fs-6 p-0 my-3">
+  <a
+    [routerLink]="['task', task.id]"
+    class="col-10 col-md-11 text-start py-1 px-3"
+  >
+    <div class="col-headers row">
+      <div class="col-md-4 col-7">Task</div>
+      <div class="col-md-4 col-5">Frequency</div>
+      <div class="col-4 d-none d-md-block">Date Active</div>
+    </div>
+    <div class="row fw-semibold">
+      <div class="col-md-4 col-7">
+        {{ task.name }}
+      </div>
+      <div class="col-md-4 col-5">
+        Every {{ task.frequencyNumber }} {{ task.frequencyUnit }}
+      </div>
+      <div class="col-4 d-none d-md-block">
+        {{ task.dateActive.toLocaleString("default", { month: "short" }) }}
+        {{ task.dateActive.getDate() }}, {{ task.dateActive.getFullYear() }}
+      </div>
+    </div>
+  </a>
+  <button class="col-md-1 col-2 btn">Icon</button>
+</div>
 }
