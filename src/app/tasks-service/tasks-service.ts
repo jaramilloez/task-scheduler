@@ -2,8 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Task } from '../task-model/task';
-import { isImportAttribute } from 'typescript';
-import { SubscriptionLoggable } from 'rxjs/internal/testing/SubscriptionLoggable';
 //import { environment } from '../environments/environment';
 
 @Injectable({
@@ -15,11 +13,11 @@ export class TasksService {
 
   /* Be aware that this is only here to substitute an API/database because I'm 
   trying to soley focus on learning Angular with this project. I've commented 
-  out a lot of what would be needed to use Angular's HttpClient with a 
-  real API, so I can still practice that part without errors preventing start. */
+  out a lot of what would be needed to use Angular's HttpClient with a real 
+  API, so I can still practice that part without errors preventing startup. */
 
   readonly todaysDate: Date = new Date();
-  private tasks: Task[] = [
+  private cachedTasks: Task[] | null = [
     new Task(
       'abc1d',
       'Sweep',
@@ -130,13 +128,23 @@ export class TasksService {
     ),
   ];
 
-  getAllTasks(): Task[] {
-    //return this.http.get<Task[]>(this.apiUrl);
-    return this.tasks;
+  getAllTasks(): Task[] | null {
+    if (this.cachedTasks) {
+      return this.cachedTasks;
+    }
+    return this.cachedTasks;
+    /*
+    return this.http.get<Task[]>(this.apiUrl).pipe(
+      tap(tasks => this.cachedTasks = tasks)
+    );
+    */
   }
   getTask(id: string): Task | undefined {
-    //return this.http.get<Task>(`${this.apiUrl}/${id}`);
-    return this.tasks.find((task) => task.id === id);
+    if (this.cachedTasks) {
+      return this.cachedTasks.find((task) => task.id === id);
+    }
+    return undefined;
+    //return this.http.get<Task>(`${this.apiUrl}/${id}`)
   }
   saveTask(task: Task): void {
     //this.http.post<Task>(this.apiUrl);

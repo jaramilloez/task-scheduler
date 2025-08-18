@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { TasksService } from '../tasks-service/tasks-service';
 import { Task } from '../task-model/task';
 import { TaskCards } from './task-cards/task-cards';
@@ -11,11 +11,11 @@ import { Pagination } from './pagination/pagination';
   templateUrl: './tasks-list.html',
   styleUrl: './tasks-list.css',
 })
-export class TasksList {
+export class TasksList implements OnInit {
   tasksService = inject(TasksService);
-  tasks = signal<Task[]>([]);
+  tasks = signal<Task[] | null>([]);
 
-  constructor() {
+  ngOnInit() {
     this.tasks.set(this.tasksService.getAllTasks());
   }
 }

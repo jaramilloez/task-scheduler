@@ -1,11 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-single-task',
   imports: [],
   templateUrl: './single-task.html',
-  styleUrl: './single-task.css'
+  styleUrl: './single-task.css',
 })
-export class SingleTask {
-
-}
+export class SingleTask {}
