@@ -12,10 +12,10 @@ import { Pagination } from './pagination/pagination';
   styleUrl: './tasks-list.css',
 })
 export class TasksList implements OnInit {
-  tasksService = inject(TasksService);
-  tasks = signal<Task[] | null>([]);
+  public tasks: Task[] | null = [];
+  private tasksService = inject(TasksService);
 
   ngOnInit() {
-    this.tasks.set(this.tasksService.getAllTasks());
+    this.tasks = this.tasksService.getAllTasks();
   }
 }

@@ -139,11 +139,19 @@ export class TasksService {
     );
     */
   }
-  getTask(id: string): Task | undefined {
-    if (this.cachedTasks) {
-      return this.cachedTasks.find((task) => task.id === id);
+  getTask(id: string | null): Task | null {
+    if (id === null) {
+      return null;
     }
-    return undefined;
+    if (this.cachedTasks) {
+      const task: Task | undefined = this.cachedTasks.find(
+        (task) => task.id === id
+      );
+      if (task) {
+        return task;
+      }
+    }
+    return null;
     //return this.http.get<Task>(`${this.apiUrl}/${id}`)
   }
   saveTask(task: Task): void {

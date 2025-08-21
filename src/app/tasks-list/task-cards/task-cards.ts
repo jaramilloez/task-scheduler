@@ -9,5 +9,5 @@ import { Task } from '../../task-model/task';
   styleUrl: './task-cards.css',
 })
 export class TaskCards {
-  @Input() tasks: Task[] = [];
+  @Input() tasks: Task[] | null = [];
 }
